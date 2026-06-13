@@ -20,7 +20,7 @@ jobs:
           curl -fL \
             -H "Authorization: token ${{ secrets.GH_TOKEN }}" \
             -H "Accept: application/vnd.github.v3.raw" \
-            "https://api.github.com/repos/nwl1909/internetbetterfree/contents/configibf" \
+            "https://api.github.com/repos/nwl1909/internetbetterfree/contents/configibf?ref=main" \
             -o configibf
 
       - name: Download configibf2
@@ -28,7 +28,7 @@ jobs:
           curl -fL \
             -H "Authorization: token ${{ secrets.GH_TOKEN }}" \
             -H "Accept: application/vnd.github.v3.raw" \
-            "https://api.github.com/repos/nwl1909/internetbetterfree/contents/configibf2" \
+            "https://api.github.com/repos/nwl1909/internetbetterfree/contents/configibf2?ref=main" \
             -o configibf2
 
       - name: Commit changes
