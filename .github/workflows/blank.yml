@@ -15,18 +15,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Download configibf (private repo)
+      - name: Download configibf
         run: |
-          curl -L \
-            -H "Authorization: Bearer ${{ secrets.GH_TOKEN }}" \
+          curl -fL \
+            -H "Authorization: token ${{ secrets.GH_TOKEN }}" \
             -H "Accept: application/vnd.github.v3.raw" \
             "https://api.github.com/repos/nwl1909/internetbetterfree/contents/configibf" \
             -o configibf
 
-      - name: Download configibf2 (private repo)
+      - name: Download configibf2
         run: |
-          curl -L \
-            -H "Authorization: Bearer ${{ secrets.GH_TOKEN }}" \
+          curl -fL \
+            -H "Authorization: token ${{ secrets.GH_TOKEN }}" \
             -H "Accept: application/vnd.github.v3.raw" \
             "https://api.github.com/repos/nwl1909/internetbetterfree/contents/configibf2" \
             -o configibf2
