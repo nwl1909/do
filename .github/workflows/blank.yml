@@ -1,0 +1,23 @@
+      - name: Publish to public repository
+        env:
+          TOKEN: ${{ secrets.PUBLIC_REPO_TOKEN }}
+        run: |
+          git clone https://x-access-token:${TOKEN}@github.com/nwl1909/do.git public
+
+          cp configibf public/
+          cp configibf2 public/
+
+          cd public
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add configibf configibf2
+
+          if git diff --cached --quiet; then
+            echo "No changes"
+            exit 0
+          fi
+
+          git commit -m "Auto update configs"
+          git push
