@@ -30,4 +30,4 @@ jobs:
         run: |
           curl -X POST "https://api.telegram.org/bot${{ secrets.BOT_TOKEN }}/sendMessage" \
             -d chat_id="@internetbetterfree" \
-            -d text="🔔 Обновлён VPN конфиг (configibf или configibf2). Обновите клиент."
+            -d text="🔔 Обновлён VPN конфиг. Обновите клиент."
