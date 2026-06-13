@@ -16,10 +16,10 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Download configibf
-        run: curl -L Link -o configibf
+        run: curl -L "${{ secrets.CONFIG_URL_1 }}" -o configibf
 
       - name: Download configibf2
-        run: curl -L https://raw.githubusercontent.com/nwl1909/internetbetterfree/main/configibf2 -o configibf2
+        run: curl -L "${{ secrets.CONFIG_URL_2 }}" -o configibf2
 
       - name: Commit changes
         run: |
