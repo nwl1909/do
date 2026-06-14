@@ -2,31 +2,19 @@ name: VPN Config Update Notification
 
 on:
   push:
+    branches:
+      - main  # Замени на master, если у тебя основная ветка называется master
+    paths:
+      - 'configibf'
+      - 'configibf2'
+      # Если файлы лежат в папке, укажи путь: 'configs/configibf'
 
 jobs:
   notify:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 2
-
-      - name: Check changed files
-        id: changes
-        run: |
-          echo "Checking changes..."
-
-          CHANGED=$(git diff --name-only HEAD~1 HEAD)
-
-          echo "Changed files:"
-          echo "$CHANGED"
-
-          echo "$CHANGED" | grep -E '^(configibf|configibf2)$' && echo "send=true" >> $GITHUB_OUTPUT || echo "send=false" >> $GITHUB_OUTPUT
-
       - name: Send Telegram notification
-        if: steps.changes.outputs.send == 'true'
         run: |
           curl -X POST "https://api.telegram.org/bot${{ secrets.BOT_TOKEN }}/sendMessage" \
             -d chat_id="@internetbetterfree" \
