@@ -3,11 +3,10 @@ name: VPN Config Update Notification
 on:
   push:
     branches:
-      - main  # Замени на master, если у тебя основная ветка называется master
+      - main
     paths:
       - 'configibf'
       - 'configibf2'
-      # Если файлы лежат в папке, укажи путь: 'configs/configibf'
 
 jobs:
   notify:
