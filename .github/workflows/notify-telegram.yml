@@ -1,4 +1,4 @@
-name: Notify Telegram on Config Change
+name: Notify
 
 on:
   push:
