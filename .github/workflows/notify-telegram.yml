@@ -1,4 +1,4 @@
-name: Notify
+name: Notify Telegram on Config Change
 
 on:
   push:
@@ -7,6 +7,7 @@ on:
     paths:
       - 'configibf'
       - 'configibf2'
+  workflow_dispatch:
 
 jobs:
   notify:
@@ -21,11 +22,10 @@ jobs:
       - name: Detect changed files
         id: changes
         run: |
-          CHANGED=$(git diff --name-only HEAD~1 HEAD | grep -E '^(configibf|configibf2)$' | tr '\n' ',' | sed 's/,$//')
+          CHANGED=$(git diff --name-only HEAD~1 HEAD | grep -E '^(configibf|configibf2)$' | tr '\n' ',' | sed 's/,$//' || echo "configibf,configibf2")
           echo "files=$CHANGED" >> $GITHUB_OUTPUT
 
       - name: Send Telegram notification
-        if: steps.changes.outputs.files != ''
         run: |
           curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
             --data-urlencode "chat_id=${{ secrets.TELEGRAM_CHAT_ID }}" \
